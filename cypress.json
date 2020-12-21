@@ -1,0 +1,13 @@
+{
+    "baseUrl": "https://www.k-ruoka.fi",
+    "reporter": "junit",
+    "reporterOptions": {
+        "mochaFile": "results/TEST-[hash].xml"
+    },
+    "screenshotOnRunFailure": false,
+    "video": false,
+    "env": {
+        "test_folder_prefix": "_CY_",
+        "test_graph_prefix": "_CY_"
+      }
+}
