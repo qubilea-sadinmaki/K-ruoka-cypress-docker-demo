@@ -1,6 +1,5 @@
 .DS_Store
 .Trash-0/
-cypress.env.json
 cypress/screenshots/
 cypress/videos/
 node_modules/
