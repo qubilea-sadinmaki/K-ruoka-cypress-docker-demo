@@ -2,6 +2,10 @@
   "name": "k-ruoka-cypress-docker-demo",
   "version": "1.0.0",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qubilea-sadinmaki/K-ruoka-cypress-docker-demo.git"
+  },
   "main": "index.ts",
   "scripts": {
     "start": "node_modules/.bin/cypress open",
