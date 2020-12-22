@@ -1,5 +1,5 @@
 {
-  "name": "cypress-e2e",
+  "name": "k-ruoka-cypress-docker-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
