@@ -4,7 +4,7 @@
     "reporterOptions": {
         "mochaFile": "results/TEST-[hash].xml"
     },
-    "screenshotOnRunFailure": false,
+    "screenshotOnRunFailure": true,
     "video": false,
     "env": {
         "test_folder_prefix": "_CY_",

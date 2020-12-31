@@ -1,8 +1,9 @@
 FROM cypress/included:5.3.0
+ARG my_workdir=/e2e
+WORKDIR ${my_workdir}
 
-WORKDIR /e2e
+COPY ./ ${my_workdir}
 
-COPY ./ /e2e
+RUN npm install && npm audit fix
 
-RUN npm install
-
+# docker build -t k-demo . && docker run k-demo --browser chrome

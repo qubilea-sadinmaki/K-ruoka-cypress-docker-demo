@@ -2,6 +2,7 @@
 
 Cypress.Commands.add('login', () => {
     cy.visit('/');
+    cy.passCookieModal()
     cy.get('.main-navi-user-info-profile-link').click()
     cy.get('.btn--primary').click()
     cy.get('#input-email',{timeout:10000}).type(Cypress.env('username'));
@@ -9,6 +10,26 @@ Cypress.Commands.add('login', () => {
     cy.get('#ka-button-login').click()
     cy.get('#loaderImage').should('not.be.visible')
 });
+
+Cypress.Commands.add('passCookieModal', () => {
+  cy.wait(2500)
+  cy.getCookies().then((cookies) => {
+    for (let index = 0; index < cookies.length; index++) {
+      const element = cookies[index];
+      cy.log(element.name);
+    }   
+  })
+  cy.getCookie('_hjFirstSeen').then((cookie) => {
+    if(cookie === null)
+    {
+      cy.get('.cookie-notice')
+      cy.get('.primary').click()
+      // cy.get('.outline').click()
+    }
+  })
+});
+
+
 
 Cypress.Commands.add('loginByApi', () => {
     const username = Cypress.env('username')
@@ -46,7 +67,7 @@ Cypress.Commands.add('logout', () => {
 
 
 Cypress.Commands.add('preserveAutoLogout', () => {
-    Cypress.Cookies.preserveOnce('sessionid')
+    Cypress.Cookies.preserveOnce('session_id') //KESKO_SSO_SESSION
 });
 
 Cypress.Commands.add('dataCy', (value) => {

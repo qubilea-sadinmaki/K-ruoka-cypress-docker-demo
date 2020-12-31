@@ -29,5 +29,11 @@ declare namespace Cypress {
        * @example cy.preserveAutoLogout()
       */
       preserveAutoLogout():Chainable;
+
+      /**
+       * Custom command to pass cookies modal in the first visit
+       * @example cy.preserveAutoLogout()
+      */
+      passCookieModal():Chainable;
     }
 }

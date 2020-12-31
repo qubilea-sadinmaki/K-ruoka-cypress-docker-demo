@@ -16,6 +16,16 @@
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  on('task', {
+    closeModalMaybe (modal_text) {
+      let modalExists = false;
+      if ( getElementsByClassName('overlay') ) {
+
+        // cy.contains(modal_text).click();
+        modalExists = true;
+      }
+
+      return modalExists;
+    }
+  })
 }
