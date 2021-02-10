@@ -1,4 +1,5 @@
-FROM cypress/included:5.3.0
+# FROM cypress/included:6.1.0
+FROM cypress/browsers:node12.18.3-chrome87-ff82
 ARG my_workdir=/e2e
 WORKDIR ${my_workdir}
 
@@ -6,4 +7,4 @@ COPY ./ ${my_workdir}
 
 RUN npm install && npm audit fix
 
-# docker build -t k-demo . && docker run k-demo --browser chrome
+RUN npm install --save-dev cypress@6.1.0

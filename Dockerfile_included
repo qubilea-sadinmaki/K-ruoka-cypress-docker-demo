@@ -1,0 +1,7 @@
+FROM cypress/included:6.1.0
+ARG my_workdir=/e2e
+WORKDIR ${my_workdir}
+
+COPY ./ ${my_workdir}
+
+RUN npm install && npm audit fix

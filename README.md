@@ -12,7 +12,7 @@ to the Custobar test enviroment.
 The `cypress.env.json` should look like this (with your own values of course):
 
     {
-        "baseUrl": "https://code.custobar.loc",
+        "baseUrl": "https://www.k-ruoka.fi",
         "username": "my-user",
         "password": "my-password"
     }

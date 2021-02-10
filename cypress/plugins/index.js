@@ -12,20 +12,32 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+// promisified fs module
+const fs = require('fs-extra')
+const path = require('path')
+
+function getConfigurationByFile (file) {
+  const pathToConfigFile = path.resolve('cypress', 'config', `${file}.json`)
+
+  if(fs.existsSync(!pathToConfigFile))
+  {
+    console.log("No custom config file found!")
+    return {}
+  }
+
+  return fs.readJson(pathToConfigFile)
+}
+
 /**
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
+  // accept a configFile value or use development by default
+  const file = config.env.configFile || 'development'
+
+  return getConfigurationByFile(file)
+  
   on('task', {
-    closeModalMaybe (modal_text) {
-      let modalExists = false;
-      if ( getElementsByClassName('overlay') ) {
 
-        // cy.contains(modal_text).click();
-        modalExists = true;
-      }
-
-      return modalExists;
-    }
   })
 }

@@ -1,12 +1,10 @@
 /// <reference path="../../support/index.d.ts" />
 
 describe('Check the website is working', () => {
-    before(() => {
-        Cypress.Cookies.debug(true);
-    })
 
     it('goto homepage', () => {
         cy.visit('/')
-        cy.passCookieModal()
+        cy.contains('k-ruoka')
+        // cy.passCookieModal('_hjFirstSeen', 4000)
     })
 })
