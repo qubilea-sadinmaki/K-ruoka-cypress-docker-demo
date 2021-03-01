@@ -33,7 +33,6 @@ describe('Navigate to product and buy it', () => {
         cy.intercept("PUT", "https://www.k-ruoka.fi/kr-api/order-drafts")
         .as('addProduct')
 
-        //get first available milk and add it to the shoppingcart
         cy.log('Get first available "milk"-product and add it to the shoppingcart')
         cy.contains('.product-result-item','maito')
         .find('[class="amount-plus plus-icon visible"]')

@@ -20,7 +20,8 @@
     "multi-browser-login": "npm run k-login-headed -- --browser electron && npm run k-login-headed -- --browser chrome && npm run k-login-headed -- --browser firefox",
     "multi-browser-all": "npm run test-headed -- --browser electron && npm run test-headed -- --browser chrome && npm run test-headed -- --browser firefox",
     "multi-browser-spec": "npm run test-headed -- --browser electron --spec '$SPECS' && npm run test-headed -- --browser chrome --spec '$SPECS' && npm run test-headed -- --browser firefox --spec '$SPECS'",
-    "run-dashboard": "cypress run --record --key 47165b77-bc7b-4976-aa08-c0a3a1ac5792"
+    "dashboard": "npx cypress run --record --key 47165b77-bc7b-4976-aa08-c0a3a1ac5792",
+    "multi-browser-dashboard": "npm run dashboard -- --browser electron && npm run dashboard -- --browser chrome && npm run dashboard -- --browser firefox"
   },
   "author": "Petri Sadinmäki",
   "license": "ISC",

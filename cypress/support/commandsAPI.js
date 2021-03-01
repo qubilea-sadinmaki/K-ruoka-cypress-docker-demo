@@ -15,14 +15,14 @@ Cypress.Commands.add('loginByApi', () => {
         remember_me:'on'
       },
       failOnStatusCode: false
-    })
+    });
 
-    cy.log("Request userinfo to verify we are logged in")
+    cy.log("Request userinfo to verify we are logged in");
     cy.request('GET', 'https://www.k-ruoka.fi/kr-api/userinfo')
     .should((response) => {
       expect(response.status).to.eq(200)
       expect(response.body.email).to.eq(username)
-    })
+    });
 });
 
 Cypress.Commands.add('logoutAPI', () => {

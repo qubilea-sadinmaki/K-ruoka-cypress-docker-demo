@@ -10,17 +10,19 @@ describe('Add product, go to shopping cart and verify it goes to creditcard paym
     context('Setup', () => {
       it(`should add product from category "${product.type}"  with name containing "${product.name}"`, () => {
         cy.loginByApi()
+        cy.log(`Goto search url of product "${product.type}"`)
         cy.visit(`https://www.k-ruoka.fi/kauppa/tuotehaku?haku=${product.type}`)
 
+        cy.log('Specify "order-drafts" request were going to wait later')
         cy.intercept("PUT", "https://www.k-ruoka.fi/kr-api/order-drafts")
         .as('addProduct')
 
-        //get first available product containing string and add it to the shoppingcart
+        cy.log('Get first available "milk"-product and add it to the shoppingcart. This triggers "order-drafts" request')
         cy.contains('.product-result-item',product.name)
         .find('[class="amount-plus plus-icon visible"]')
         .click()
 
-        // cache shoppingcart id for later use
+        cy.log('Start waiting "order-drafts" request response')
         cy.wait('@addProduct', {timeout:20000})
         .then(({ request, response }) => {
             expect(response.statusCode).to.eq(200)
@@ -32,41 +34,37 @@ describe('Add product, go to shopping cart and verify it goes to creditcard paym
 
     context('Testcase', () => {
       it('should navigate to shoppingcart and fill in information', () => {
+        cy.log('Open shopping cart and verify it is fully loaded')
         cy.get('.shop-navigation-item > a').click()
 
-        //verify our information is loaded on shoppingcart
         cy.get('#order-form-display-email')
         .find('.order-form-contact-info__row-value')
         .contains(Cypress.env('username'))
-        //should select store
+
+        cy.log('Change to the preferred store')
         cy.get('.shopping-list-controls-menu').click()
         cy.contains('Vaihda kauppa').click()
         cy.contains(paymentInfo.store).click()
         cy.get('#store-selector-modal').should('not.exist')
-        //should check delivery
+
+        cy.log('Choose home delivery and type in preferred zipcode')
         cy.get('#select-order-home-delivery').click()
-        //should input zip-code
         cy.get('#order-form-input-zipCode').type(paymentInfo.zip)
-        //should choose first available time for delivery
+
+        cy.log('Choose first available time for delivery and confirm')
         cy.get('.delivery-time-selector', {timeout:20000})
         .not('.disabled')
         .first()
         .contains('00') //trick for bypassing cy:s shortcoming of handling elements whose parent is not visible
         .click({force:true})
-        //should confirm time
+
         cy.get('#delivery-time-confirm').click()       
       })
 
       it('should verify paying via webbank is available', () => {
-        //should check payment via web-bank
+        cy.log('Check payment via web-bank. Then choose "add card"')
         cy.get('.web > .radio-btn > label').click()
-        //should add card
-        cy.intercept("POST", "https://www.k-ruoka.fi/kr-api/cards/openTermi")
-        .as('openTerminal')
- 
         cy.get('.payment-card-selection__add-card > .btn').click()
-        
-        //should confirm "add card"
         cy.get('.add-payment-card__confirm-button').first() //.click()
       })
     }) 
