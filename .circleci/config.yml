@@ -5,5 +5,5 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          command: npx cypress run --spec 'cypress/integration/001-login/*.ts'
+          spec: cypress/integration/001-login/*.ts 
 
