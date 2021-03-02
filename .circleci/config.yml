@@ -5,5 +5,5 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          command: npm run login-chrome
+          command: npx cypress run --spec 'cypress/integration/001-login/*.ts'
 
