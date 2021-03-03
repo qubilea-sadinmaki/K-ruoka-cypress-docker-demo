@@ -27,4 +27,12 @@ workflows:
           spec: cypress/integration/001-login/*.ts
           requires:
             - Chrome tests
+      - cypress/run: 
+          name: "Chrome - Mobile tests"
+          browser: chrome
+          executor: with-chrome-and-firefox
+          spec: cypress/integration/001-login/*.ts
+          config: "viewportWidth=375,viewportHeight=667"
+          requires:
+            - Firefox tests
 
