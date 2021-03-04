@@ -12,26 +12,26 @@ workflows:
     jobs:
       - cypress/run: 
           name: "Electron tests"
-          spec: cypress/integration/001-login/*.ts
+          #spec: cypress/integration/001-login/*.ts
       - cypress/run: 
           name: "Chrome tests"
           browser: chrome
           executor: with-chrome-and-firefox
-          spec: cypress/integration/001-login/*.ts
+          #spec: cypress/integration/001-login/*.ts
           requires:
             - Electron tests
       - cypress/run: 
           name: "Firefox tests"
           browser: firefox
           executor: with-chrome-and-firefox
-          spec: cypress/integration/001-login/*.ts
+          #spec: cypress/integration/001-login/*.ts
           requires:
             - Chrome tests
       - cypress/run: 
           name: "Chrome - Mobile tests"
           browser: chrome
           executor: with-chrome-and-firefox
-          spec: cypress/integration/001-login/*.ts
+          #spec: cypress/integration/001-login/*.ts
           config: "viewportWidth=375,viewportHeight=667"
           requires:
             - Firefox tests
