@@ -1,4 +1,4 @@
-# K-ruoka-cypress-docker-demo
+# K-Ruoka-cypress-docker-demo
 Demo of using Cypress and Docker.
 
 ## Configure your local installation
