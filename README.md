@@ -1,4 +1,4 @@
-# K-ruoka-cypress-docker-demo
+# K-Ruoka-cypress-docker-demo
 Demo of using Cypress and Docker.
 
 ## Configure your local installation
@@ -6,14 +6,15 @@ Demo of using Cypress and Docker.
 Create a new file called `cypress.env.json` into your workspace project root, next to `cypress.json`.
 This file has been excluded from the repository, so it is specific for the environment.
 
-Add three values to the configuration, `baseUrl`, `username` and `password`, which are used to connect
-to the Custobar test enviroment.
+Add three values to the configuration, `baseUrl`, `username`,`nickname` and `password`, which are used to connect
+to the test enviroment.
 
 The `cypress.env.json` should look like this (with your own values of course):
 
     {
         "baseUrl": "https://www.k-ruoka.fi",
         "username": "my-user",
+        "nickname": "my-nickname",
         "password": "my-password"
     }
     
